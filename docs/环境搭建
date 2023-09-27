@@ -1,12 +1,45 @@
 # 环境搭建
 
+环境： Ubuntu 20.04
+
+更换软件源
 ```sh
-sudo apt install \
-    bison flex libncurses-dev libssl-dev repo git ssh make gcc libssl-dev \ 
-    expect g++ patchelf chrpath gawk texinfo chrpath diffstat binfmt-support liblz4-tool \ 
-    qemu-user-static live-build bison flex fakeroot cmake gcc-multilib g++-multilib \ 
-    unzip device-tree-compiler python-pip ncurses-dev pyelftools \
+sudo vi /etc/apt/sources.list
 ```
+清华源(https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/)：
+```
+# 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-updates main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-updates main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-backports main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-backports main restricted universe multiverse
+
+# deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-security main restricted universe multiverse
+# # deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-security main restricted universe multiverse
+
+deb http://security.ubuntu.com/ubuntu/ focal-security main restricted universe multiverse
+# deb-src http://security.ubuntu.com/ubuntu/ focal-security main restricted universe multiverse
+
+# 预发布软件源，不建议启用
+# deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-proposed main restricted universe multiverse
+# # deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-proposed main restricted universe multiverse
+```
+
+1. 
+    ```
+    sudo apt update
+    ```
+
+2. 
+    ```sh
+    sudo apt install \
+        bison flex ncurses-dev libssl-dev git ssh make gcc libssl-dev \
+        expect g++ patchelf chrpath gawk texinfo chrpath diffstat binfmt-support liblz4-tool \
+        qemu-user-static live-build bison flex fakeroot cmake gcc-multilib g++-multilib \
+        unzip device-tree-compiler python3-pip ncurses-dev python3-pyelftools 
+    ```
 bison 通用解析器生成器
 flex 词法分析器，将 .l 文件生成 .c 文件
 libncurses-dev 在终端中提供 ui 能力的库，比如 KConfig 界面
